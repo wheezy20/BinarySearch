@@ -1,3 +1,7 @@
+import random
+# the algo should choose a random number and add it to the list at line 50
+import time
+# to track the time of both searches
 # naive search: scan entire list and ask if its equal to target 
 # if yes, return index
 # if no, then return -1
@@ -34,7 +38,28 @@ def binary_search(l, target, low=None, high=None):
         return binary_search(l, target, midpoint+1, high)
       
 if __name__ == '__main__':
-    l = [ 1, 3, 5, 7, 9, 13, 12, 16, 19, 24, 29, 36, 70]
-    target = 16
-    print(naive_search(l, target))
-    print(binary_search(l, target))
+    #l = [ 1, 3, 5, 7, 9, 13, 12, 16, 19, 24, 29, 36, 70]
+    #target = 16
+    #print(naive_search(l, target))
+    #print(binary_search(l, target))
+
+    length = 10000
+    #build a sorted list of length 10000
+    sorted_list = set()
+    while len(sorted_list) < length:
+        sorted_list.add(random.randomint(-3*length, 3*length))
+    sorted_list = sorted(list(sorted_list))
+
+    start = time.time()
+    for target in sorted_list:
+        naive_search(sorted_list, target)
+    end = time.time()
+    print("Naive search time: ", (end - start)/length, "seconds")
+
+    start = time.time()
+    for target in sorted_list:
+        binary_search(sorted_list, target)
+    end = time.time()
+    print("Binary search time: ", (end - start)/length, "seconds")
+
+
