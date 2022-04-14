@@ -47,7 +47,7 @@ if __name__ == '__main__':
     #build a sorted list of length 10000
     sorted_list = set()
     while len(sorted_list) < length:
-        sorted_list.add(random.randomint(-3*length, 3*length))
+        sorted_list.add(random.randint(-3*length, 3*length))
     sorted_list = sorted(list(sorted_list))
 
     start = time.time()
